@@ -17,7 +17,7 @@ supervisorctl depends on:
 
 Sample:
 
-.. image:: supervisorctl.png
+.. image:: _static/supervisorctl.png
 
 .. toctree::
    :maxdepth: 2
