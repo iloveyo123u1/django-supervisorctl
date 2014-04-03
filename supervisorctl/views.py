@@ -63,7 +63,8 @@ def index(request):
     for k,v in gsmap.iteritems():
         services = []
         for item in v:
-            state = get_state(item.description)
+            desc = item.description if hasattr(item, "description") else "" 
+            state = get_state(desc)
             if state in ['running']:
                 action = {'name': 'stop', 'url': '/supervisorctl/service/?id=%s&action=stop' % item.pk }
             elif state in ['stoped', 'error']:
@@ -71,7 +72,7 @@ def index(request):
 
             services.append({
                 'state': state, 
-                'description': item.description,
+                'description': desc,
                 'name': item.name,
                 'host': item.host.get_host(),
                 'actions': [action],
